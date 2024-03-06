@@ -1,5 +1,9 @@
 #!/usr/bin/python3
+""" Moduel for pascal triangle"""
+
+
 def pascal_triangle(n):
+    """Function creating pascal triangle"""
     if n <= 0:
         return []
 
