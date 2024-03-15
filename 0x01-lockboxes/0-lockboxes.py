@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Checks if all boxes can be opened given a list of key lists."""
 
 
