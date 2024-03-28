@@ -28,6 +28,8 @@ def log_parsing():
                         continue
                     print(f"{code}: {count_status_code[code]}")
     except KeyboardInterrupt:
+        pass
+    finally:
         print(f"File size: {total_file_size}")
         for code in sorted(count_status_code.keys()):
             if code not in code_array:
