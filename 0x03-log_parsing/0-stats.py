@@ -22,18 +22,18 @@ def log_parsing():
             total_file_size += int(file_size)
             count_status_code[int(status_code)] += 1
             if i % 10 == 0:
-                print(f"File size: {total_file_size}")
+                print(f"File size:{total_file_size}")
                 for code in sorted(count_status_code.keys()):
                     if code not in code_array:
                         continue
-                    print(f"{code}: {count_status_code[code]}")
+                    print(f"{code}:{count_status_code[code]}")
     except KeyboardInterrupt:
         pass
     print(f"File size: {total_file_size}")
     for code in sorted(count_status_code.keys()):
         if code not in code_array:
             continue
-        print(f"{code}: {count_status_code[code]}")
+        print(f"{code}:{count_status_code[code]}")
 
 
 log_parsing()
