@@ -20,9 +20,9 @@ def log_parsing():
                 continue
             status_code = line_args[8]
             file_size = line_args[9]
+            total_file_size += int(file_size)
             if not status_code.isdigit():
                 continue
-            total_file_size += int(file_size)
             count_status_code[int(status_code)] += 1
             if i % 10 == 0:
                 print(f"File size: {total_file_size}")
