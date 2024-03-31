@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """script that reads stdin line by line and computes metrics"""
 import sys
+import re
 from collections import defaultdict
 
 
@@ -12,11 +13,13 @@ def log_parsing():
 
     try:
         for i, line in enumerate(sys.stdin, start=1):
-            line_args = line.strip().split()
-            if len(line_args) != 9:
+            line_args = line.strip()
+            line_args = re.split(r'\s+|-', line_args)
+            line_args = [arg for arg in line_args if arg]
+            if len(line_args) != 10:
                 continue
-            status_code = line_args[7]
-            file_size = line_args[8]
+            status_code = line_args[8]
+            file_size = line_args[9]
             if not status_code.isdigit():
                 continue
             total_file_size += int(file_size)
