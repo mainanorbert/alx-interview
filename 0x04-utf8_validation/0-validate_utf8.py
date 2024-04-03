@@ -7,9 +7,9 @@ def validUTF8(data):
     """function determines if a given data set
     represents a valid UTF-8 encoding"""
     for x in data:
-        my_bin = x & 0xFF
-        my_bin = int(bin(my_bin), 2)
-        if is_valid_utf8_encoding(int(bin(my_bin), 2)) is False:
+        x = x & 0xFF
+        x = int(bin(x), 2)
+        if is_valid_utf8_encoding(int(bin(x), 2)) is False:
             return False
     return True
 
