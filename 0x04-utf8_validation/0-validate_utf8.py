@@ -9,7 +9,7 @@ def validUTF8(data):
     for x in data:
         # x = x & 0xFF
         x = int(bin(x), 2)
-        if is_valid_utf8_encoding(int(bin(x), 2)) is False:
+        if is_valid_utf8_encoding(x) is False:
             return False
     return True
 
