@@ -8,8 +8,7 @@ def validUTF8(data):
     represents a valid UTF-8 encoding"""
     for x in data:
         x = x & 0xFF
-        # print(x)
-        x = int(bin(x), 2)
+        # x = int(bin(x), 2)
         if is_valid_utf8_encoding(x) is False:
             return False
     return True
