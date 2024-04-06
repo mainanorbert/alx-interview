@@ -1,32 +1,27 @@
 #!/usr/bin/python3
-"""module that determines if a given
-data set represents a valid UTF-8 encoding"""
+"""module  that determines if a given data set
+represents a valid UTF-8 encoding"""
 
 
 def validUTF8(data):
     """function determines if a given data set
     represents a valid UTF-8 encoding"""
+    num_bytes = 0
     for x in data:
-        # x = x & 0xFF
-        # x = int(bin(x), 2)
-        if is_valid_utf8_encoding(x) is False:
-            return False
-    return True
-
-
-def is_valid_utf8_encoding(integer):
-    """function that determines of int is utf8"""
-    if integer < 0x80:
-        # Single-byte character
-        return True
-    elif integer < 0x800:
-        # Two-byte character
-        return (integer & 0xE0) == 0xC0
-    elif integer < 0x10000:
-        # Three-byte character
-        return (integer & 0xF0) == 0xE0
-    elif integer < 0x110000:
-        # Four-byte character
-        return (integer & 0xF8) == 0xF0
-    else:
-        return False
+        x = x & 0xFF
+        if num_bytes == 0:
+            if x >> 7 == 0:
+                continue
+            elif x >> 5 == 0b110:
+                num_bytes = 1
+            elif x >> 4 == 0b1110:
+                num_bytes = 2
+            elif x >> 3 == 0b11110:
+                num_bytes = 3
+            else:
+                return False
+        else:
+            if x >> 6 != 0b10:
+                return False
+            num_bytes -= 1
+    return num_bytes == 0
