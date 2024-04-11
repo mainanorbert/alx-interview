@@ -4,7 +4,7 @@ import sys
 
 
 def is_safe(board, row, col, N):
-    # Check if there is a queen in the same column
+    """Check if there is a queen in the same column"""
     for i in range(row):
         if board[i][col] == 1:
             return False
@@ -49,7 +49,7 @@ def nqueens(N):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: ./0-nqueens.py N")
+        print("Usage: nqueens N")
         sys.exit(1)
 
     try:
