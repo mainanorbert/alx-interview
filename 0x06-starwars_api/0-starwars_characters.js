@@ -1,5 +1,4 @@
 #!/usr/bin/node
-
 const request = require('request');
 const movieId = process.argv[2];
 
@@ -9,6 +8,7 @@ request(url, (error, response, body) => {
     process.exit(1);
   }
   const charactersUrls = JSON.parse(body).characters;
+	print(charactersUrls)
   charactersUrls.forEach((characterUrl) => {
     request(characterUrl, (error, response, body) => {
       if (error || response.statusCode !== 200) {
