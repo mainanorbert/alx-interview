@@ -8,7 +8,6 @@ request(url, (error, response, body) => {
     process.exit(1);
   }
   const charactersUrls = JSON.parse(body).characters;
-	console.log(charactersUrls)
   charactersUrls.forEach((characterUrl) => {
     request(characterUrl, (error, response, body) => {
       if (error || response.statusCode !== 200) {
