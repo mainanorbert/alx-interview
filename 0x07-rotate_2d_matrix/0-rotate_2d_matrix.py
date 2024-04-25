@@ -1,15 +1,11 @@
 #!/usr/bin/python3
-"""module to rotate 2D a matrix"""
+""" Rotate 2D Matrix"""
 
 
 def rotate_2d_matrix(matrix):
-    """function to rotate a matrix"""
-    mat = transpose(matrix)
-    return [mat[::-1] for row in mat]
-
-
-def transpose(matrix):
+    """function rotatin matrix clockwise"""
     for i in range(len(matrix)):
-        for j in range(i + 1, len(matrix[0])):
+        for j in range(i + 1, len(matrix)):
             matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
-    return matrix
+    for i in range(len(matrix)):
+        matrix[i].reverse()
