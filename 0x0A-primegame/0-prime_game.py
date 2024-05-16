@@ -36,39 +36,40 @@ def isWinner(x, nums):
     b_c = 0
     m_c = 0
     rounds = 0
-    for i in nums:
-        if rounds == x:
-            break
-        int_array = [vals for vals in range(1, i + 1)]
-        flag = True
-        prime_array = sieve_of_eratosthenes(i)
-        if len(prime_array) == 0:
-            b_c += 1
-        # Generating ints in give range
-        int_array = [vals for vals in range(1, i + 1)]
+    while rounds < x:
 
-        for prime in prime_array:
-            multiples = []
-            first_mul = prime * ((1 + prime - 1) // prime)
-            current_mul = first_mul
-            while current_mul <= i:
-                multiples.append(current_mul)
-                current_mul += prime
-            # Calculating remaining ints after subtracting multiples
-            int_array = [x for x in int_array if x not in multiples]
-            if len(int_array) == 1 and int_array[0] == 1:
-                if flag is True:
-                    m_c += 1
-                if flag is False:
-                    b_c += 1
-            flag = not flag
+        for i in nums:
+            int_array = [vals for vals in range(1, i + 1)]
+            flag = True
+
+            prime_array = sieve_of_eratosthenes(i)
+            if len(prime_array) == 0:
+                b_c += 1
+            # Generating ints in give range
+            int_array = [vals for vals in range(1, i + 1)]
+
+            for prime in prime_array:
+                multiples = []
+                first_mul = prime * ((1 + prime - 1) // prime)
+                current_mul = first_mul
+                while current_mul <= i:
+                    multiples.append(current_mul)
+                    current_mul += prime
+                # Calculating remaining ints after subtracting multiples
+                int_array = [x for x in int_array if x not in multiples]
+                if len(int_array) == 1 and int_array[0] == 1:
+                    if flag is True:
+                        m_c += 1
+                    if flag is False:
+                        b_c += 1
+                flag = not flag
         rounds += 1
-    if b_c > m_c:
-        return "Ben"
-    elif b_c < m_c:
-        return "Maria"
-    else:
-        return None
+        if b_c > m_c:
+            return "Ben"
+        elif m_c > b_c:
+            return "Maria"
+        else:
+            return None
 
 
 # isWinner(3, [4, 5, 1])
