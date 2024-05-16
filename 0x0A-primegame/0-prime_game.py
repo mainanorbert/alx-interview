@@ -33,42 +33,41 @@ def isWinner(x, nums):
         x (_int_): _no of times to play_
         nums (_array_): _array of numbers used in the game
     """
-
     b_c = 0
     m_c = 0
-    for i in nums:
-        int_array = [vals for vals in range(1, i + 1)]
-        flag = True
+    rounds = 0
+    while rounds < x:
 
-        prime_array = sieve_of_eratosthenes(i)
-        if len(prime_array) == 0:
-            b_c += 1
-            # print('b won')
-        int_array = [vals for vals in range(1, i + 1)]
-        for prime in prime_array:
+        for i in nums:
+            int_array = [vals for vals in range(1, i + 1)]
+            flag = True
 
-            muls = []
-            first_mul = prime * ((1 + prime - 1) // prime)
-            current_mul = first_mul
-            while current_mul <= i:
-                muls.append(current_mul)
-                current_mul += prime
-            # print(flag)
-            int_array = [x for x in int_array if x not in muls]
-            if len(int_array) == 1 and int_array[0] == 1:
-                if flag is True:
-                    # print('m won')
-                    m_c += 1
-                if flag is False:
-                    # print('b won')
-                    b_c += 1
-            flag = not flag
-    if b_c > m_c:
-        return "Ben"
-    else:
-        # print("Winner: Maria")
-        return "Maria"
-    # print(f"b: {b_c}, m: {m_c}")
+            prime_array = sieve_of_eratosthenes(i)
+            if len(prime_array) == 0:
+                b_c += 1
+            # Generating ints in give range
+            int_array = [vals for vals in range(1, i + 1)]
+
+            for prime in prime_array:
+                multiples = []
+                first_mul = prime * ((1 + prime - 1) // prime)
+                current_mul = first_mul
+                while current_mul <= i:
+                    multiples.append(current_mul)
+                    current_mul += prime
+                # Calculating remaining ints after subtracting multiples
+                int_array = [x for x in int_array if x not in multiples]
+                if len(int_array) == 1 and int_array[0] == 1:
+                    if flag is True:
+                        m_c += 1
+                    if flag is False:
+                        b_c += 1
+                flag = not flag
+        rounds += 1
+        if b_c > m_c:
+            return "Ben"
+        else:
+            return "Maria"
 
 
 # isWinner(3, [4, 5, 1])
