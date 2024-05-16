@@ -66,8 +66,10 @@ def isWinner(x, nums):
         rounds += 1
         if b_c > m_c:
             return "Ben"
-        else:
+        elif m_c > b_c:
             return "Maria"
+        else:
+            return None
 
 
 # isWinner(3, [4, 5, 1])
