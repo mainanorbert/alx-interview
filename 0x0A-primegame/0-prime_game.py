@@ -33,7 +33,7 @@ def isWinner(x, nums):
         x (_int_): _no of times to play_
         nums (_array_): _array of numbers used in the game
     """
-    if len(nums) == 0 or x == 0:
+    if len(nums) == 0 or x == 0 or x is None or nums is None:
         return None
     b_c = 0
     m_c = 0
