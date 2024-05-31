@@ -8,6 +8,7 @@ request(url, (error, response, body) => {
     process.exit(1);
   }
   const urls = JSON.parse(body).characters;
+  console.log(urls)
   function makeRequests (urls) {
     if (urls.length === 0) {
       return;
